@@ -1,0 +1,16 @@
+#!/bin/bash
+
+echo Filename
+read  name
+
+gnome-terminal -x sh -c "roscore"
+
+sleep 3
+
+gnome-terminal -x sh -c "rosparam set /use_sim_time true && roslaunch openni_launch openni.launch load_driver:=false"
+
+gnome-terminal -x sh -c "roslaunch voxblox_ros D435LIVE.launch"
+
+sleep 5
+
+gnome-terminal -x sh -c "rosbag play $name --clock /camera/aligned_depth_to_color/camera_info:=/camera/depth_registered/camera_info /camera/aligned_depth_to_color/image_raw:=camera/depth_registered/image_raw /camera/color/camera_info:=camera/rgb/camera_info /camera/color/image_raw:=/camera/rgb/image_raw"

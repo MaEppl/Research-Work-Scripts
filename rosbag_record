@@ -1,0 +1,13 @@
+#!/bin/bash
+input=1
+
+echo also record stereo pictures? NO[1] YES[2]
+read bool
+
+if(($bool == $input));then
+rosbag record /camera/aligned_depth_to_color/camera_info /camera/aligned_depth_to_color/image_raw /camera/color/image_raw /camera/color/camera_info /tf_static /final_transform_cam_PoseStamped /final_transform_cam_TransformStamped /orb_slam_2_ros_node/ORBSLAM2/current_transform_cam_PoseStamped /orb_slam_2_ros_node/ORBSLAM2/current_transform_cam_TransformStamped 
+
+else
+rosbag record /camera/aligned_depth_to_color/camera_info /camera/aligned_depth_to_color/image_raw /camera/color/image_raw /camera/color/camera_info /tf_static /final_transform_cam_PoseStamped /final_transform_cam_TransformStamped /orb_slam_2_ros_node/ORBSLAM2/current_transform_cam_PoseStamped /orb_slam_2_ros_node/ORBSLAM2/current_transform_cam_TransformStamped /camera/infra1/image_rect_raw /camera/infra1/camera_info /camera/infra2/image_rect_raw /camera/infra2/camera_info 
+fi
+
